@@ -1,8 +1,11 @@
 const express = require("express");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const getConnection = require("./config/dbConnection")
 const User = require("./model/model"); // User model
 
+// getConnection()
 const app = express();
 const PORT = 3000;
 const JWT_SECRET = "your_secret_key"; // Use environment variables in production
@@ -22,6 +25,7 @@ app.post("/register", async (req, res) => {
 
   const newUser = new User({ name, email, password });
   await newUser.save();
+  // or => User.create({ name, email, password});
   res.status(201).json({ msg: "Registration successful." });
 });
 
@@ -34,8 +38,8 @@ app.post("/login", async (req, res) => {
     return res.status(404).json({ msg: "Account not found. Please register." });
   }
 
-  const validPassword = await user.comparePassword(password);
-  if (!validPassword) {
+  const isPasswordValid = bcrypt.compareSync(password, user.password);
+  if (!isPasswordValid) {
     return res.status(401).json({ msg: "Invalid credentials." });
   }
 
