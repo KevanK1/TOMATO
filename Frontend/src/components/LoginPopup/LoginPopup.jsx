@@ -48,6 +48,7 @@ const LoginPopup = ({ setShowLogin }) => {
           // Optionally store the token in localStorage
           localStorage.setItem("token", data.token);
         } else {
+          localStorage.setItem("token", data.token);
           setMessage("Registration successful!");
         }
         setTimeout(() => setShowLogin(false), 1500); // Close the popup after 2 seconds

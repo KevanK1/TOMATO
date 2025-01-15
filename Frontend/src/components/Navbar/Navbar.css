@@ -1,28 +1,30 @@
-.navbar{
+.navbar {
     padding: 20px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.navbar .logo{
-    width :150px;
+.navbar .logo {
+    width: 150px;
 }
 
-.navbar-menu{
+.navbar-menu {
     display: flex;
     list-style: none;
     gap: 20px;
     color: #49557e;
     font-size: 18px;
 }
-.navbar-right{
+
+.navbar-right {
     display: flex;
     align-items: center;
     gap: 40px;
 }
 
-.navbar button{
+/* Sign in / Logout Button Styling */
+.navbar button {
     background: transparent;
     font-size: 16px;
     color: #49557e;
@@ -31,21 +33,25 @@
     border-radius: 50px;
     cursor: pointer;
 }
-.navbar button:hover{
+
+.navbar button:hover {
     background-color: #fff4f2;
 }
 
-.navbar .active{
+.navbar .active {
     padding-bottom: 2px;
     border-bottom: 2px solid #49557e;
 }
-.navbar li{
+
+.navbar li {
     cursor: pointer;
 }
-.navbar-search-icon{
+
+.navbar-search-icon {
     position: relative;
 }
-.navbar-search-icon .dot{
+
+.navbar-search-icon .dot {
     position: absolute;
     min-width: 10px;
     min-height: 10px;
@@ -54,48 +60,75 @@
     top: -8px;
     right: -8px;
 }
-@media (max-width:1050px){
-    .navbar .logo{
+
+/* Mobile Responsiveness */
+@media (max-width: 1050px) {
+    .navbar .logo {
         width: 140px;
     }
-    .navbar-menu{
+    .navbar-menu {
         gap: 20px;
         font-size: 17px;
     }
-    .navbar-right{
+    .navbar-right {
         gap: 30px;
     }
-    .navbar-right img{
+    .navbar-right img {
         width: 22px;
     }
-    .navbar-right button{
+    .navbar-right button {
         padding: 8px 25px;
     }
 }
 
-@media (max-width:900px){
-    .navbar .logo{
+@media (max-width: 900px) {
+    .navbar .logo {
         width: 120px;
     }
-    .navbar-menu{
+    .navbar-menu {
         gap: 15px;
         font-size: 16px;
     }
-    .navbar-right{
+    .navbar-right {
         gap: 20px;
     }
-    .navbar-right img{
+    .navbar-right img {
         width: 20px;
     }
-    .navbar-right button{
+    .navbar-right button {
         padding: 7px 20px;
         font-size: 15px;
     }
 }
 
-@media (max-width:750px){
-    
-    .navbar-menu{
-        display: none;
+@media (max-width: 750px) {
+    .navbar-menu {
+        display: none; /* Hide menu on small screens */
+    }
+
+    /* Mobile Cart and Sign In Button Styling */
+    .navbar-right {
+        gap: 15px;
+    }
+
+    .navbar-right button {
+        font-size: 14px;
+        padding: 6px 15px; /* Adjust button size */
+    }
+
+    .navbar-search-icon {
+        font-size: 20px; /* Scale down icon for mobile */
+    }
+
+    /* Ensure cart icon is small on mobile */
+    .navbar-search-icon i {
+        font-size: 22px;
+    }
+
+    .navbar-search-icon .dot {
+        min-width: 8px;
+        min-height: 8px;
+        top: -6px;
+        right: -6px;
     }
 }

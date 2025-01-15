@@ -8,11 +8,11 @@ const Footer = () => {
         <div className="footer-content">
             <div className="footer-content-left">
                 <img src={assets.logo} alt="" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quas nesciunt quis aperiam veritatis, possimus consequatur vel deleniti necessitatibus earum? Illum ipsum excepturi sit at provident aliquid! Alias, nemo quaerat.</p>
+                <p>At Tomato, we are passionate about bringing you the best of local and global cuisine right to your doorstep. Whether you're craving a quick snack or a full-course meal, we ensure fast, reliable, and safe delivery, all while keeping your taste buds satisfied. With a commitment to quality and convenience, Tomato is your go-to partner for food delivery. Let us take care of your cravings – anytime, anywhere. 🍅</p>
                 <div className="footer-social-icons">
-                    <img src={assets.facebook_icon} alt="" />
-                    <img src={assets.twitter_icon} alt="" />
-                    <img src={assets.linkedin_icon} alt="" />
+                <i class="ri-facebook-fill"></i>
+                <i class="ri-twitter-x-line"></i>
+                <i class="ri-instagram-line"></i>
                 </div>
             </div>
             <div className="footer-content-center">
