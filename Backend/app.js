@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const getConnection = require("./config/dbConnection")
 const User = require("./model/model"); // User model
+const Order = require("./model/orderModel"); // Order model
 
 // getConnection()
 const app = express();
@@ -74,7 +75,72 @@ app.get("/", (req, res) => {
   res.send("Welcome");
 });
 
+// app.post('/placeorder', async (req, res) => {
+//   try {
+//     const { firstName, lastName, email, street, city, state, zip, country, phone, totalAmount } = req.body;
+
+//     // Create a new order using the data from the client
+//     const newOrder = new Order({
+//       firstName,
+//       lastName,
+//       email,
+//       street,
+//       city,
+//       state,
+//       zip,
+//       country,
+//       phone,
+//       totalAmount
+//     });
+
+//     // Save the order to the database
+//     await newOrder.save();
+
+//     // Respond with a success message
+//     res.status(201).json({ message: 'Order placed successfully!', order: newOrder });
+//   } catch (error) {
+//     console.error('Error placing order:', error);
+//     res.status(500).send(error.toString());
+//   }
+// });
+
+
 // Start Server
+
+// In your backend (Node.js, Express)
+
+app.post('/placeorder', async (req, res) => {
+  const { firstName, lastName, email, street, city, state, zip, country, phone, cartItems, totalAmount } = req.body;
+
+  try {
+    // Save the order to the database
+    const order = new Order({
+      firstName,
+      lastName,
+      email,
+      street,
+      city,
+      state,
+      zip,
+      country,
+      phone,
+      cartItems,  // This will be the array of cart items from the front-end
+      totalAmount,
+      createdAt: new Date(),
+    });
+
+    // Save the order to the database
+    await order.save();
+
+    // Respond with a success message
+    res.status(200).json({ message: 'Order placed successfully', orderId: order._id });
+  } catch (error) {
+    console.error('Error placing order:', error);
+    res.status(500).json({ message: 'Error placing order' });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
