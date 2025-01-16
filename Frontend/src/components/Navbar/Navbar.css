@@ -132,3 +132,45 @@
         right: -6px;
     }
 }
+/* Logout Popup Styling */
+.logout-popup {
+    height: 30%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    /* border: 1px solid tomato; */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.logout-popup p {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+    /* padding-left: 1rem;
+    padding-right: 1rem; */
+}
+
+/* Buttons in the Logout Popup */
+.logout-popup button {
+    /* border: 1px solid tomato; */
+    background-color: tomato;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-popup button:hover {
+    background-color: #FFF4F2;
+    color: tomato;
+}

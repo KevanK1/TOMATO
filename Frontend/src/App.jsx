@@ -31,11 +31,4 @@ const App = () => {
 }
 
 export default App
-// import React from "react";
-// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import StoreContextProvider from "./context/StoreContext";
-// import Navbar from "./components/Navbar/Navbar";
-// import Home from "./pages/Home/Home";
-// import Cart from "./pages/Cart/Cart";
-// import Login from "./components/LoginPopup/LoginPopup";
 

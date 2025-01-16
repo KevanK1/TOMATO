@@ -23,42 +23,41 @@ const LoginPopup = ({ setShowLogin }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const url = currState === "Login" ? "/login" : "/register";
+  e.preventDefault();
+  const url = currState === "Login" ? "/login" : "/register";
 
-    const requestBody =
-      currState === "Login"
-        ? { email: formData.email, password: formData.password }
-        : formData;
+  const requestBody =
+    currState === "Login"
+      ? { email: formData.email, password: formData.password }
+      : formData;
 
-    try {
-      const response = await fetch(`http://localhost:3000${url}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+  try {
+    const response = await fetch(`http://localhost:3000${url}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (response.ok) {
-        if (currState === "Login") {
-          setMessage("Login successful!");
-          // Optionally store the token in localStorage
-          localStorage.setItem("token", data.token);
-        } else {
-          localStorage.setItem("token", data.token);
-          setMessage("Registration successful!");
-        }
-        setTimeout(() => setShowLogin(false), 1500); // Close the popup after 2 seconds
+    if (response.ok) {
+      if (currState === "Login") {
+        setMessage("Login successful!");
+        localStorage.setItem("token", data.token); // Store token for login
       } else {
-        setMessage(data.msg || "Something went wrong.");
+        setMessage("Registration successful!");
+        localStorage.setItem("token", data.token); // Store token for registration
       }
-    } catch (error) {
-      setMessage("Error connecting to the server.");
+      setTimeout(() => setShowLogin(false), 1500); // Close the popup after 1.5 seconds
+    } else {
+      setMessage(data.msg || "Something went wrong.");
     }
-  };
+  } catch (error) {
+    setMessage("Error connecting to the server.");
+  }
+};
 
   return (
     <div className="login-popup">
