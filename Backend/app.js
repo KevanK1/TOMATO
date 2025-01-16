@@ -140,6 +140,109 @@ app.post('/placeorder', async (req, res) => {
   }
 });
 
+// app.get('/api/account', async (req, res) => {
+//   try {
+//     const { email } = req.query;
+
+//     // Validate the email parameter
+//     if (!email) {
+//       return res.status(400).json({ error: 'Email is required to fetch account details' });
+//     }
+
+//     // Find the user by email (you can adjust this according to your database query method)
+//     const user = await User.findOne({ email }); // Ensure this query matches your DB setup
+
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     // Respond with the user's account details
+//     res.status(200).json({
+//       success: true,
+//       data: {
+//         name: `${user.firstName} ${user.lastName}`,  // Combined name (adjust fields as needed)
+//         email: user.email,
+//         phone: user.phone || "N/A",  // Include default value if no phone exists
+//         address: {
+//           street: user.address.street || "N/A",  // Default to "N/A" if not available
+//           city: user.address.city || "N/A",
+//           state: user.address.state || "N/A",
+//           zip: user.address.zip || "N/A",
+//           country: user.address.country || "N/A",
+//         },
+//         orders: user.orders || [],  // Include order history, ensure this is an array in your schema
+//       }
+//     });
+//   } catch (error) {
+//     console.error('Error fetching account details:', error);
+//     res.status(500).json({ error: 'An error occurred while fetching account details' });
+//   }
+// });
+
+app.post('/api/get-email', (req, res) => {
+  try {
+    const token = req.headers['authorization']; // Get token from headers
+
+    if (!token) {
+      return res.status(400).json({ error: 'Token is required' });
+    }
+
+    // Verify and decode the token
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const email = decoded.email;
+
+    if (!email) {
+      return res.status(400).json({ error: 'Email not found in token' });
+    }
+
+    // Send back the email
+    res.status(200).json({ email });
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    res.status(401).json({ error: 'Invalid or expired token' });
+  }
+});
+
+app.post('/api/account', async (req, res) => {
+  try {
+    // Extract the email from the request headers
+    const email = req.headers['email']; // This gets the 'Email' header from the request
+
+    // Validate that the email is provided
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required in the headers to fetch account details' });
+    }
+
+    // Find the user by email in the database
+    const user = await User.findOne({ email }); // Assuming you are using MongoDB and Mongoose
+
+    // If user not found, return error
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Respond with the user's account details
+    res.status(200).json({
+      success: true,
+      data: {
+        name: `${user.firstName} ${user.lastName}`, // Combine first and last name
+        email: user.email,
+        phone: user.phone || 'N/A', // If phone is not available, return 'N/A'
+        address: {
+          street: user.address?.street || 'N/A',
+          city: user.address?.city || 'N/A',
+          state: user.address?.state || 'N/A',
+          zip: user.address?.zip || 'N/A',
+          country: user.address?.country || 'N/A',
+        },
+        orders: user.orders || [], // Orders history, can be empty array if no orders
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching account details:', error);
+    res.status(500).json({ error: 'An error occurred while fetching account details' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

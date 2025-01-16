@@ -7,7 +7,7 @@ import Cart from './pages/Cart/Cart'
 import Footer from './components/Footer/Footer'
 import StoreContextProvider from './context/StoreContext'
 import LoginPopup from './components/LoginPopup/LoginPopup'
-
+import Account from './pages/Account/Account'
 
 
 
@@ -23,6 +23,7 @@ const App = () => {
         < Route path='/' element={<Home/>}/>
         < Route path='/cart' element={<Cart/>}/>
         < Route path='/order' element={<PlaceOrder/>}/>
+        < Route path='/account' element={<Account/>}/>
       </Routes>
     </div>
     <Footer/>

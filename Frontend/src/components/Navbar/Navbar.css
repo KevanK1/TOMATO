@@ -174,3 +174,25 @@
     background-color: #FFF4F2;
     color: tomato;
 }
+
+.navbar-account {
+    margin-right: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.navbar-account a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.navbar-account a:hover {
+    color: #555;
+}
+
+.navbar-account i {
+    font-size: 18px;
+}

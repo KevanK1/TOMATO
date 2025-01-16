@@ -1,0 +1,131 @@
+/* Account.css */
+
+.account-container {
+    background-color: white; /* Set background to white */
+    color: black; /* Set font color to black */
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 30px auto;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: tomato; /* Tomato color for the main title */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: tomato; /* Tomato color for subheadings */
+    margin-top: 20px;
+  }
+  
+  .account-details {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-info, .address-info, .order-history {
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+  
+  b {
+    font-weight: bold;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .error {
+    color: red;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+/* .account-container {
+    max-width: 600px;
+    margin: 50px auto; 
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  
+  .account-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+
+  .account-detail {
+    margin-bottom: 15px;
+  }
+  
+  .account-detail p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555; 
+  }
+  
+  .account-detail b {
+    color: #222;
+  }
+
+  .order-history {
+    margin-top: 30px;
+  }
+  
+  .order-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #444;
+  }
+  
+  .order-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+  }
+  
+  .order-item p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .no-orders {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+  } */
