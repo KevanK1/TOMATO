@@ -215,6 +215,9 @@ app.post('/api/account', async (req, res) => {
 
     // Find the user by email in the database
     const user = await User.findOne({ email }); // Assuming you are using MongoDB and Mongoose
+    const {name} = user
+    const order = await Order.findOne({ email }); 
+    const {firstName, lastName,street,city,state,zip,country,phone,cartItems} = order
 
     // If user not found, return error
     if (!user) {
@@ -225,17 +228,17 @@ app.post('/api/account', async (req, res) => {
     res.status(200).json({
       success: true,
       data: {
-        name: `${user.firstName} ${user.lastName}`, // Combine first and last name
-        email: user.email,
-        phone: user.phone || 'N/A', // If phone is not available, return 'N/A'
+        name: name, // Combine first and last name
+        email: email,
+        phone: phone || 'N/A', // If phone is not available, return 'N/A'
         address: {
-          street: user.address?.street || 'N/A',
-          city: user.address?.city || 'N/A',
-          state: user.address?.state || 'N/A',
-          zip: user.address?.zip || 'N/A',
-          country: user.address?.country || 'N/A',
+          street: street || 'N/A',
+          city: city || 'N/A',
+          state: state || 'N/A',
+          zip: zip || 'N/A',
+          country: country || 'N/A',
         },
-        orders: user.orders || [], // Orders history, can be empty array if no orders
+        orders: cartItems || [], // Orders history, can be empty array if no orders
       },
     });
   } catch (error) {

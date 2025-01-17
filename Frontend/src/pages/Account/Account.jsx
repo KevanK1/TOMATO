@@ -108,22 +108,18 @@ const Account = () => {
               <ul>
                 {accountDetails.orders.map((order, index) => (
                   <li key={index}>
-                    <p>
-                      <b>Order ID:</b> {order.id}
-                    </p>
-                    <p>
-                      <b>Total Amount:</b> ${order.totalAmount}
-                    </p>
+                    
                     <p>
                       <b>Items:</b>
                     </p>
                     <ul>
-                      {order.cartItems.map((item, idx) => (
-                        <li key={idx}>
-                          {item.name} - {item.quantity} x ${item.price} = $
-                          {item.total}
+                      
+                        <li>
+                          Dish: {order.name} <br />
+                          Quantity: {order.quantity} Cost: ${order.price} <br />
+                          Toatal: {order.total}
                         </li>
-                      ))}
+                      
                     </ul>
                   </li>
                 ))}
@@ -132,6 +128,7 @@ const Account = () => {
               <p>No orders placed yet.</p>
             )}
           </div>
+          
         </div>
       ) : (
         <p>No account details available.</p>
