@@ -16,19 +16,60 @@ app.use(cors());
 app.use(express.json()); // Built-in JSON parser
 
 // Route: Register
+// app.post("/register", async (req, res) => {
+//   const { name, email, password } = req.body;
+
+//   const userExists = await User.findOne({ email });
+//   if (userExists) {
+//     return res.status(400).json({ msg: "User already exists." });
+//   }
+
+//   const newUser = new User({ name, email, password });
+//   await newUser.save();
+//   // or => User.create({ name, email, password});
+
+//   // const token = jwt.sign({ email: req.email, name: req.name }, JWT_SECRET, {
+//   //   expiresIn: "1h",
+//   // });
+
+//   const token = jwt.sign({ email: newUser.email, name: newUser.name }, JWT_SECRET, {
+//     expiresIn: "1h",
+//   });
+  
+
+//   res.status(201).json({ msg: "Registration successful." });
+// });
+
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
-  const userExists = await User.findOne({ email });
-  if (userExists) {
-    return res.status(400).json({ msg: "User already exists." });
+  if (!name || !email || !password) {
+    return res.status(400).json({ msg: "All fields are required." });
   }
 
-  const newUser = new User({ name, email, password });
-  await newUser.save();
-  // or => User.create({ name, email, password});
-  res.status(201).json({ msg: "Registration successful." });
+  try {
+    // Check if the user already exists
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ msg: "User already exists." });
+    }
+
+    // Create a new user
+    const newUser = new User({ name, email, password }); // Password encryption handled in model
+    await newUser.save();
+
+    // Sign a JWT token
+    const token = jwt.sign({ id: newUser._id, email: newUser.email }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.status(201).json({ msg: "Registration successful.", token });
+  } catch (err) {
+    console.error("Error during registration:", err.message);
+    res.status(500).json({ msg: "Internal server error." });
+  }
 });
+
 
 // Route: Login
 app.post("/login", async (req, res) => {
